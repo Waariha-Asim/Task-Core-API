@@ -1,23 +1,30 @@
 # TaskCore API
-
-[![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.110%2B-009688.svg)](https://fastapi.tiangolo.com/)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](#license)
-[![Status](https://img.shields.io/badge/status-active-success.svg)](#)
-
 A lightweight, production-style **RESTful Task Management API** built with FastAPI. TaskCore demonstrates clean CRUD architecture, strict request validation, correct HTTP semantics, and auto-generated interactive documentation via OpenAPI — all in a single, readable file.
 
 ---
 
 ## 📸 API Documentation & Testing
 
-### Swagger UI
+The API can be tested interactively through FastAPI Swagger documentation:
 
-The API can be tested interactively through FastAPI Swagger documentation: `http://127.0.0.1:8000/docs`
+`http://127.0.0.1:8000/docs`
+
+---
+
+## Project Preview
+
+### Swagger API Documentation
 
 <div align="center">
-  <img src="App UI.png" width="48%" />
-  <img src="Get all Tasks.png" width="48%" />
+  <img src="App UI.png" width="85%" />
+</div>
+
+<br>
+
+### Get All Tasks Response
+
+<div align="center">
+  <img src="Get all Tasks.png" width="85%" />
 </div>
 
 ---

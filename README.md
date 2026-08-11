@@ -1,122 +1,78 @@
 # TaskCore API
 
-A production-style **RESTful Task Management API** built with **FastAPI**, developed progressively from an in-memory implementation to persistent **SQLite** and **PostgreSQL** database backends.
+A production-style **RESTful Task Management API** built with **FastAPI**, developed progressively across three persistence stages:
 
-The project demonstrates how the same REST API architecture can evolve from a simple backend prototype into a database-backed service while maintaining clean API design, validation, CRUD operations, persistent storage, SQL queries, and interactive OpenAPI documentation.
+**In-Memory → SQLite → PostgreSQL (Neon)**
+
+The project demonstrates REST API design, CRUD operations, validation, SQL-based persistence, database integration, task search, statistics, and interactive OpenAPI documentation.
 
 ---
 
 ## 🚀 Project Evolution
 
-TaskCore was developed in progressive stages:
+| Version  | Backend           | Focus                       |
+| -------- | ----------------- | --------------------------- |
+| **v1.0** | In-Memory         | FastAPI & REST fundamentals |
+| **v2.0** | SQLite            | Local persistent storage    |
+| **v3.0** | PostgreSQL (Neon) | Cloud database integration  |
 
-| Version  | Implementation    | Key Focus                                           |
-| -------- | ----------------- | --------------------------------------------------- |
-| **v1.0** | In-Memory Storage | REST API fundamentals & CRUD                        |
-| **v2.0** | SQLite            | Persistent local database storage                   |
-| **v3.0** | PostgreSQL        | Production-oriented relational database integration |
-
-The project demonstrates the transition from a lightweight API prototype to a persistent, database-backed backend service.
+The API contract remains consistent while the underlying persistence layer evolves.
 
 ---
 
 ## 📸 Project Preview
 
-### TaskCore API — PostgreSQL v3.0
+### PostgreSQL v3.0 — API UI
 
-The final PostgreSQL implementation provides the complete REST API with persistent database storage.
+![PostgreSQL API UI](https://github.com/Waariha-Asim/TaskCore-API-SQLite-PostgreSQL/blob/main/TaskCore-API-PostgreSQL-Persistance/Screenshot%202026-08-11%20051056.png)
 
-![TaskCore API PostgreSQL v3.0](./TaskCore-API-PostgreSQL-Persistance/Screenshot%202026-08-11%20051056.png)
+### GET `/tasks` — In-Memory
 
----
+![In-Memory GET Tasks](https://github.com/Waariha-Asim/TaskCore-API-SQLite-PostgreSQL/blob/main/Get%20all%20Tasks.png)
 
-## 📸 API Documentation & Testing
+### GET `/tasks` — SQLite
 
-TaskCore uses **FastAPI Swagger UI** for interactive API documentation and endpoint testing.
+![SQLite GET Tasks](https://github.com/Waariha-Asim/TaskCore-API-SQLite-PostgreSQL/blob/main/Task-Core-API-Sqlite-Database/Screenshot%202026-08-11%20031242.png)
 
-Run the API locally and open:
+### GET `/tasks` — PostgreSQL
 
-```text
-http://127.0.0.1:8000/docs
-```
+![PostgreSQL GET Tasks](https://github.com/Waariha-Asim/TaskCore-API-SQLite-PostgreSQL/blob/main/TaskCore-API-PostgreSQL-Persistance/Screenshot%202026-08-11%20043455.png)
 
-### In-Memory API — GET `/tasks`
-
-The initial implementation retrieves tasks from an **in-memory data store**, providing the foundation for the TaskCore REST API and its CRUD operations.
-
-![In-Memory API — GET /tasks](https://github.com/Waariha-Asim/TaskCore-API-SQLite-PostgreSQL/blob/main/Get%20all%20Tasks.png)
-
-### SQLite API — GET `/tasks`
-
-The second implementation introduces **persistent local storage using SQLite**, allowing task data to remain available across application restarts.
-
-![SQLite API — GET /tasks](https://github.com/Waariha-Asim/TaskCore-API-SQLite-PostgreSQL/blob/main/Task-Core-API-Sqlite-Database/Screenshot%202026-08-11%20031242.png)
-
-### PostgreSQL API — GET `/tasks`
-
-The third implementation upgrades the persistence layer to **PostgreSQL**, moving the API toward a more production-oriented relational database architecture.
-
-![PostgreSQL API — GET /tasks](https://github.com/Waariha-Asim/TaskCore-API-SQLite-PostgreSQL/blob/main/TaskCore-API-PostgreSQL-Persistance/Screenshot%202026-08-11%20043455.png)
-
-> **Progression:** The API interface remains consistent across all three implementations, while the underlying storage evolves from **in-memory → SQLite → PostgreSQL**.
+> The API interface remains consistent across all three implementations while storage progresses from **in-memory → SQLite → PostgreSQL**.
 
 ---
 
 ## ✨ Features
 
-### API
-
-* RESTful API architecture
-* Complete CRUD operations
-* Create, retrieve, update, and delete tasks
-* Automatic task ID generation
+* RESTful CRUD operations
 * Task search by title
 * Task statistics
-* Health-check endpoint
-* API metadata endpoint
-
-### Validation & Error Handling
-
-* Pydantic request and response models
-* Task title validation
-* Whitespace-only title rejection
-* Structured error responses
+* Pydantic request/response validation
+* Empty-title validation
+* Structured error handling
 * Proper HTTP status codes
-* 404 handling for missing tasks
-
-### Database
-
-* SQLite persistent storage
-* PostgreSQL persistent storage
-* SQL-based CRUD operations
-* Database connection management
-* Persistent data across application restarts
-* PostgreSQL environment-based configuration
-
-### Documentation & Deployment
-
-* Automatic OpenAPI specification
-* Interactive Swagger UI
-* ReDoc documentation
-* Docker/Docker Compose configuration for PostgreSQL
-* Environment-based configuration
+* Persistent SQLite storage
+* PostgreSQL integration using Neon
+* Environment-based database configuration
+* Interactive Swagger UI and ReDoc
+* Automatic OpenAPI documentation
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Component         | Technology              |
-| ----------------- | ----------------------- |
-| Language          | Python 3.11+            |
-| API Framework     | FastAPI                 |
-| Validation        | Pydantic                |
-| ASGI Server       | Uvicorn                 |
-| Database — v2     | SQLite                  |
-| Database — v3     | PostgreSQL              |
-| Database Driver   | Psycopg                 |
-| API Documentation | OpenAPI / Swagger UI    |
-| Configuration     | Environment Variables   |
-| Containerization  | Docker / Docker Compose |
+| Component         | Technology           |
+| ----------------- | -------------------- |
+| Language          | Python 3.11+         |
+| Framework         | FastAPI              |
+| Validation        | Pydantic             |
+| Server            | Uvicorn              |
+| v1.0 Storage      | In-Memory            |
+| v2.0 Database     | SQLite               |
+| v3.0 Database     | PostgreSQL / Neon    |
+| PostgreSQL Driver | Psycopg              |
+| Configuration     | python-dotenv        |
+| Documentation     | OpenAPI / Swagger UI |
 
 ---
 
@@ -137,167 +93,67 @@ TaskCore-API-SQLite-PostgreSQL/
 │   ├── Screenshot 2026-08-11 043455.png
 │   └── Screenshot 2026-08-11 051056.png
 │
+├── Get all Tasks.png
 └── README.md
 ```
 
-The implementations are separated so the database progression can be easily inspected and compared.
-
 ---
 
-# 🔹 v1.0 — In-Memory Storage
+# 🔹 v1.0 — In-Memory API
 
-The initial implementation focuses on FastAPI and REST API fundamentals.
-
-### Highlights
-
-* FastAPI application setup
-* RESTful CRUD endpoints
-* Pydantic models
-* Request validation
-* Custom error handling
-* HTTP status codes
-* Swagger/OpenAPI documentation
+The initial implementation establishes the core REST API using FastAPI with an in-memory task store.
 
 ```text
 Client → FastAPI → In-Memory Store
 ```
 
-Because the data is stored in memory, it is lost when the application restarts.
+Data is temporary and resets when the application restarts.
 
 ---
 
-# 🔹 v2.0 — SQLite Persistence
+# 🔹 v2.0 — SQLite Database
 
-The second implementation introduces a relational database using **SQLite**.
-
-### Improvements
-
-* Persistent task storage
-* SQL-based CRUD operations
-* Database connection handling
-* Search queries
-* Task statistics
-* Data survives application restarts
+The second implementation introduces persistent local database storage using SQLite.
 
 ```text
 Client → FastAPI → SQLite
 ```
 
-This stage demonstrates the transition from a simple in-memory backend to persistent database storage.
+Tasks are stored using SQL queries and remain available after application restarts.
 
 ---
 
-# 🔹 v3.0 — PostgreSQL Persistence
+# 🔹 v3.0 — PostgreSQL with Neon
 
-The third implementation upgrades TaskCore to **PostgreSQL**, providing a more production-oriented relational database backend.
-
-### Improvements
-
-* PostgreSQL integration
-* Psycopg database driver
-* Environment-based database configuration
-* Persistent relational storage
-* SQL CRUD operations
-* Task search using PostgreSQL queries
-* Database-level task statistics
-* Docker/Docker Compose configuration
+The final implementation upgrades the persistence layer to **PostgreSQL hosted on Neon**, introducing cloud-based relational database integration.
 
 ```text
-Client → FastAPI → PostgreSQL
+Client → FastAPI → Neon PostgreSQL
 ```
 
-The API layer remains largely consistent while the persistence layer is upgraded.
+The database connection is configured through the `DATABASE_URL` environment variable.
 
 ---
 
 # 🔌 API Reference
 
-Base URL:
-
-```text
-http://127.0.0.1:8000
-```
-
-## Meta Endpoints
-
-### `GET /`
-
-Returns basic API metadata.
-
-**PostgreSQL v3.0 example:**
-
-```json
-{
-  "name": "TaskCore API",
-  "version": "3.0.0",
-  "storage": "PostgreSQL"
-}
-```
+| Method   | Endpoint           | Description     |
+| -------- | ------------------ | --------------- |
+| `GET`    | `/`                | API metadata    |
+| `GET`    | `/health`          | Health check    |
+| `GET`    | `/tasks`           | List tasks      |
+| `GET`    | `/tasks?search=`   | Search tasks    |
+| `GET`    | `/tasks/{task_id}` | Get a task      |
+| `POST`   | `/tasks`           | Create a task   |
+| `PUT`    | `/tasks/{task_id}` | Update a task   |
+| `DELETE` | `/tasks/{task_id}` | Delete a task   |
+| `GET`    | `/tasks/stats`     | Task statistics |
 
 ---
 
-### `GET /health`
+## Example Task
 
-Returns the service health status.
-
-```json
-{
-  "status": "ok"
-}
-```
-
----
-
-## Task Endpoints
-
-### `GET /tasks`
-
-Returns all tasks.
-
-```json
-[
-  {
-    "id": 1,
-    "title": "Complete Backend AI assignment",
-    "done": false
-  },
-  {
-    "id": 2,
-    "title": "Review PostgreSQL documentation",
-    "done": true
-  }
-]
-```
-
-### Search Tasks
-
-Tasks can optionally be filtered by title:
-
-```text
-GET /tasks?search=backend
-```
-
----
-
-### `GET /tasks/{task_id}`
-
-Retrieves a single task by ID.
-
-```json
-{
-  "id": 1,
-  "title": "Complete Backend AI assignment",
-  "done": false
-}
-```
-
----
-
-### `POST /tasks`
-
-Creates a new task.
-
-**Request:**
+### Create
 
 ```json
 {
@@ -305,7 +161,7 @@ Creates a new task.
 }
 ```
 
-**Response — `201 Created`:**
+### Response
 
 ```json
 {
@@ -315,38 +171,13 @@ Creates a new task.
 }
 ```
 
----
-
-### `PUT /tasks/{task_id}`
-
-Updates an existing task.
-
-**Request:**
-
-```json
-{
-  "title": "Finalize internship portfolio",
-  "done": true
-}
-```
-
----
-
-### `DELETE /tasks/{task_id}`
-
-Deletes a task.
-
-**Response:**
+### Search
 
 ```text
-204 No Content
+GET /tasks?search=backend
 ```
 
----
-
-### `GET /tasks/stats`
-
-Returns task statistics.
+### Statistics
 
 ```json
 {
@@ -358,31 +189,17 @@ Returns task statistics.
 
 ---
 
-## 🔒 Request Validation
+## 🔒 Validation & HTTP Status Codes
 
-TaskCore validates incoming request data using Pydantic.
+| Code  | Usage                |
+| ----- | -------------------- |
+| `200` | Successful GET / PUT |
+| `201` | Task created         |
+| `204` | Task deleted         |
+| `400` | Invalid task data    |
+| `404` | Task not found       |
 
-For example, empty or whitespace-only task titles are rejected:
-
-```json
-{
-  "title": "   "
-}
-```
-
-This prevents invalid data from reaching the database layer.
-
----
-
-## 📊 HTTP Status Codes
-
-| Code  | Meaning     | Usage                     |
-| ----- | ----------- | ------------------------- |
-| `200` | OK          | Successful GET / PUT      |
-| `201` | Created     | Task successfully created |
-| `204` | No Content  | Task successfully deleted |
-| `400` | Bad Request | Invalid task data         |
-| `404` | Not Found   | Task does not exist       |
+Task titles are validated using Pydantic, including rejection of empty or whitespace-only values.
 
 ---
 
@@ -392,22 +209,16 @@ This prevents invalid data from reaching the database layer.
 
 * Python 3.11+
 * pip
-* SQLite for v2.0
-* PostgreSQL or a PostgreSQL-compatible database for v3.0
+* Neon PostgreSQL account for v3.0
 
----
-
-## Clone the Repository
+## Clone
 
 ```bash
 git clone https://github.com/Waariha-Asim/TaskCore-API-SQLite-PostgreSQL.git
-
 cd TaskCore-API-SQLite-PostgreSQL
 ```
 
----
-
-## Create a Virtual Environment
+## Virtual Environment
 
 ### Windows
 
@@ -423,56 +234,33 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
----
-
-## Install Dependencies
+## Dependencies
 
 ```bash
-pip install fastapi uvicorn
-```
-
-For PostgreSQL:
-
-```bash
-pip install psycopg python-dotenv
+pip install fastapi uvicorn psycopg python-dotenv
 ```
 
 ---
 
-# ▶️ Running the SQLite Version
-
-Navigate to:
+# ▶️ Run SQLite Version
 
 ```bash
 cd Task-Core-API-Sqlite-Database
-```
-
-Run:
-
-```bash
 uvicorn main:app --reload
-```
-
-Open Swagger:
-
-```text
-http://127.0.0.1:8000/docs
 ```
 
 ---
 
-# ▶️ Running the PostgreSQL Version
-
-Navigate to:
+# ▶️ Run PostgreSQL Version
 
 ```bash
 cd TaskCore-API-PostgreSQL-Persistance
 ```
 
-Configure your database connection in `.env`:
+Create `.env`:
 
 ```env
-DATABASE_URL=your_postgresql_connection_string
+DATABASE_URL=your_neon_postgresql_connection_string
 ```
 
 Then run:
@@ -481,122 +269,61 @@ Then run:
 uvicorn main:app --reload
 ```
 
-Open Swagger:
+Open Swagger UI:
 
 ```text
 http://127.0.0.1:8000/docs
 ```
 
-> Never commit your actual `.env` file or database credentials. Use `.env.example` for sharing configuration structure.
+ReDoc:
 
----
+```text
+http://127.0.0.1:8000/redoc
+```
 
-# 🐳 Docker Support
-
-The PostgreSQL implementation includes Docker/Docker Compose configuration for containerized deployment.
-
-The containerized setup provides a reproducible environment for:
-
-* FastAPI
-* PostgreSQL
-* Application/database networking
-* Environment-based configuration
-* Persistent database storage
-
-Docker is optional when running the API directly against an existing PostgreSQL database.
+> **Security:** Never commit your actual `.env` file or database credentials. Use `.env.example` when sharing configuration.
 
 ---
 
 # 🏗️ Architecture Progression
 
 ```text
-                  TaskCore API
-                       │
-                       ▼
-                FastAPI REST Layer
-                       │
-          ┌────────────┼────────────┐
-          │            │            │
-        v1.0          v2.0         v3.0
-          │            │            │
-     In-Memory       SQLite     PostgreSQL
-       Storage     Persistence   Persistence
+A1 — FastAPI + In-Memory
+          ↓
+A2 — FastAPI + SQLite
+          ↓
+A3 — FastAPI + Neon PostgreSQL
 ```
 
-The core architectural principle is:
-
-> **The API contract remains stable while the persistence layer evolves.**
-
-This allows the application to progress from a simple prototype to a more production-oriented backend without redesigning the entire API.
+The project demonstrates how a REST API can evolve from a simple prototype into a persistent, cloud-connected backend while keeping the API layer consistent.
 
 ---
 
-# 🎯 Learning Outcomes
+## 🎯 Learning Outcomes
 
-This project demonstrates practical experience with:
-
-* REST API development
-* FastAPI
+* FastAPI REST API development
+* CRUD architecture
 * Pydantic validation
-* CRUD operations
-* HTTP status codes
 * SQL queries
-* Relational databases
-* SQLite
-* PostgreSQL
-* Database persistence
+* SQLite persistence
+* PostgreSQL integration
+* Neon cloud database
 * Database connection management
 * Environment variables
-* OpenAPI documentation
-* Swagger UI
+* OpenAPI / Swagger documentation
 * Backend architecture
-* Docker and Docker Compose fundamentals
-
----
-
-# 📈 Project Progression
-
-```text
-A1 — FastAPI + In-Memory CRUD
-              ↓
-A2 — FastAPI + SQLite Persistence
-              ↓
-A3 — FastAPI + PostgreSQL Persistence
-              ↓
-      Containerized Deployment
-```
-
-TaskCore demonstrates the progression from **basic REST API development to persistent database-backed backend engineering**.
-
----
-
-## 🔮 Future Improvements
-
-Potential future extensions include:
-
-* Authentication and authorization
-* Automated testing with Pytest
-* Database migrations with Alembic
-* SQLAlchemy / SQLModel integration
-* Pagination and advanced filtering
-* Redis caching
-* Background task processing
-* CI/CD pipeline
-* Cloud deployment
 
 ---
 
 ## 👩‍💻 Author
 
 **Waariha Asim**
-
 AI Engineer | Backend AI Engineering
 
-GitHub:
-https://github.com/Waariha-Asim
+[GitHub](https://github.com/Waariha-Asim)
 
 ---
 
 ## 📄 License
 
-This project is intended for educational, portfolio, and learning purposes.
+For educational, portfolio, and learning purposes.

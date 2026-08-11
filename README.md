@@ -40,19 +40,25 @@ Run the API locally and open:
 http://127.0.0.1:8000/docs
 ```
 
-### SQLite — GET `/tasks`
+### In-Memory API — GET `/tasks`
 
-The SQLite implementation retrieves tasks from a persistent local SQLite database.
+The initial implementation retrieves tasks from an **in-memory data store**, providing the foundation for the TaskCore REST API and its CRUD operations.
 
-![SQLite GET Tasks](./Task-Core-API-Sqlite-Database/Screenshot%202026-08-11%20031242.png)
+![In-Memory API — GET /tasks](https://github.com/Waariha-Asim/TaskCore-API-SQLite-PostgreSQL/blob/main/Get%20all%20Tasks.png)
 
-### PostgreSQL — GET `/tasks`
+### SQLite API — GET `/tasks`
 
-The PostgreSQL implementation retrieves the same task resources from a PostgreSQL database.
+The second implementation introduces **persistent local storage using SQLite**, allowing task data to remain available across application restarts.
 
-![PostgreSQL GET Tasks](./TaskCore-API-PostgreSQL-Persistance/Screenshot%202026-08-11%20043455.png)
+![SQLite API — GET /tasks](https://github.com/Waariha-Asim/TaskCore-API-SQLite-PostgreSQL/blob/main/Task-Core-API-Sqlite-Database/Screenshot%202026-08-11%20031242.png)
 
-> The API interface remains consistent across both database implementations while the underlying persistence layer changes from SQLite to PostgreSQL.
+### PostgreSQL API — GET `/tasks`
+
+The third implementation upgrades the persistence layer to **PostgreSQL**, moving the API toward a more production-oriented relational database architecture.
+
+![PostgreSQL API — GET /tasks](https://github.com/Waariha-Asim/TaskCore-API-SQLite-PostgreSQL/blob/main/TaskCore-API-PostgreSQL-Persistance/Screenshot%202026-08-11%20043455.png)
+
+> **Progression:** The API interface remains consistent across all three implementations, while the underlying storage evolves from **in-memory → SQLite → PostgreSQL**.
 
 ---
 
